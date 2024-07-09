@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "nanoid": "^5.0.7",
     "vue": "^3.4.29",
     "vue-toastification": "^2.0.0-rc.5"
   },

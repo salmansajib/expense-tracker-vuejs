@@ -5,7 +5,12 @@ import IncomeExpenses from "./components/IncomeExpenses.vue";
 import TransactionList from "./components/TransactionList.vue";
 import AddTransaction from "./components/AddTransaction.vue";
 
+import { nanoid } from "nanoid";
+import { useToast } from "vue-toastification";
+
 import { computed, ref } from "vue";
+
+const toast = useToast();
 
 const transactions = ref([
   { id: 1, text: "Flower", amount: -19.99 },
@@ -16,9 +21,11 @@ const transactions = ref([
 
 // Get total
 const total = computed(() => {
-  return transactions.value.reduce((acc, transaction) => {
-    return acc + transaction.amount;
-  }, 0);
+  return parseFloat(
+    transactions.value.reduce((acc, transaction) => {
+      return acc + transaction.amount;
+    }, 0)
+  );
 });
 
 // Get income
@@ -44,6 +51,26 @@ const expenses = computed(() => {
       .toFixed(2)
   );
 });
+
+// Add transaction
+const handleTransactionSubmitted = (transactionData) => {
+  transactions.value.push({
+    id: nanoid(),
+    text: transactionData.text,
+    amount: transactionData.amount,
+  });
+
+  toast.success("Transaction Added");
+};
+
+// Delete transaction
+const handleTransactionDeleted = (id) => {
+  transactions.value = transactions.value.filter(
+    (transaction) => transaction.id !== id
+  );
+
+  toast.success("Transaction deleted");
+};
 </script>
 
 <template>
@@ -51,7 +78,10 @@ const expenses = computed(() => {
   <div class="container">
     <Balance :total="total" />
     <IncomeExpenses :income="income" :expenses="expenses" />
-    <TransactionList :transactions="transactions" />
-    <AddTransaction />
+    <TransactionList
+      :transactions="transactions"
+      @transactionDeleted="handleTransactionDeleted"
+    />
+    <AddTransaction @transactionSubmitted="handleTransactionSubmitted" />
   </div>
 </template>
