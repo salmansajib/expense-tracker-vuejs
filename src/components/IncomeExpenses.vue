@@ -1,6 +1,4 @@
 <script setup>
-import { defineProps } from "vue";
-
 const props = defineProps({
   income: {
     type: Number,
@@ -14,14 +12,18 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="inc-exp-container">
-    <div>
-      <h4>Income</h4>
-      <p id="money-plus" class="money plus">${{ income }}</p>
+  <div class="inc-exp-container flex gap-2 items-center justify-center">
+    <div class="bg-zinc-950 basis-full p-3 rounded-md text-center">
+      <h4 class="uppercase">Income</h4>
+      <p id="money-plus" class="money plus text-2xl text-green-500">
+        ${{ income }}
+      </p>
     </div>
-    <div>
-      <h4>Expense</h4>
-      <p id="money-minus" class="money minus">${{ expenses }}</p>
+    <div class="bg-zinc-950 basis-full p-3 rounded-md text-center">
+      <h4 class="uppercase text-lg">Expense</h4>
+      <p id="money-minus" class="money minus text-2xl text-red-500">
+        ${{ expenses }}
+      </p>
     </div>
   </div>
 </template>

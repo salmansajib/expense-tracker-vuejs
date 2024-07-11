@@ -28,24 +28,37 @@ const onSubmit = () => {
 </script>
 
 <template>
-  <h3>Add new transaction</h3>
-  <form id="form" @submit.prevent="onSubmit">
-    <div class="form-control">
-      <label for="text">Text</label>
-      <input type="text" id="text" v-model="text" placeholder="Enter text..." />
-    </div>
-    <div class="form-control">
-      <label for="amount"
-        >Amount <br />
-        (negative - expense, positive - income)</label
+  <div class="bg-zinc-950 p-3 rounded-md">
+    <h3 class="text-center font-semibold text-2xl mb-3">Add new transaction</h3>
+    <form @submit.prevent="onSubmit" class="flex flex-col gap-2">
+      <div class="flex flex-col gap-2">
+        <label for="text">Transation Name</label>
+        <input
+          class="p-2 rounded bg-gray-200 placeholder:text-gray-500"
+          type="text"
+          id="text"
+          v-model="text"
+          placeholder="Enter text..."
+        />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="amount"
+          >Amount <br />
+          (negative - expense, positive - income)</label
+        >
+        <input
+          class="p-2 rounded bg-gray-200 placeholder:text-gray-500"
+          type="text"
+          id="amount"
+          v-model="amount"
+          placeholder="Enter amount..."
+        />
+      </div>
+      <button
+        class="bg-purple-600 hover:bg-purple-700 p-2 rounded transition-colors"
       >
-      <input
-        type="text"
-        id="amount"
-        v-model="amount"
-        placeholder="Enter amount..."
-      />
-    </div>
-    <button class="btn">Add transaction</button>
-  </form>
+        Add Transaction
+      </button>
+    </form>
+  </div>
 </template>

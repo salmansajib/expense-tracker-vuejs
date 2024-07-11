@@ -7,11 +7,9 @@ import AddTransaction from "./components/AddTransaction.vue";
 
 import { nanoid } from "nanoid";
 import { useToast } from "vue-toastification";
-
 import { computed, ref, onMounted } from "vue";
 
 const toast = useToast();
-
 const transactions = ref([]);
 
 onMounted(() => {
@@ -86,14 +84,24 @@ const saveTransactionsToLocalStorage = () => {
 </script>
 
 <template>
-  <Header />
-  <div class="container">
-    <Balance :total="total" />
-    <IncomeExpenses :income="income" :expenses="expenses" />
-    <TransactionList
-      :transactions="transactions"
-      @transactionDeleted="handleTransactionDeleted"
-    />
-    <AddTransaction @transactionSubmitted="handleTransactionSubmitted" />
+  <div
+    class="font-poppins w-full min-h-svh bg-stone-900 text-gray-200 flex items-center justify-center"
+  >
+    <div class="max-w-[400px] mx-auto px-2 py-5">
+      <header>
+        <Header />
+      </header>
+      <main class="">
+        <div class="flex flex-col gap-2">
+          <Balance :total="total" />
+          <IncomeExpenses :income="income" :expenses="expenses" />
+          <TransactionList
+            :transactions="transactions"
+            @transactionDeleted="handleTransactionDeleted"
+          />
+          <AddTransaction @transactionSubmitted="handleTransactionSubmitted" />
+        </div>
+      </main>
+    </div>
   </div>
 </template>
