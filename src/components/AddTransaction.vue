@@ -34,7 +34,7 @@ const onSubmit = () => {
       <div class="flex flex-col gap-2">
         <label for="text">Transation Name</label>
         <input
-          class="p-2 rounded bg-gray-200 placeholder:text-gray-500"
+          class="p-2 rounded bg-gray-200 placeholder:text-gray-500 text-gray-950"
           type="text"
           id="text"
           v-model="text"
@@ -47,7 +47,7 @@ const onSubmit = () => {
           (negative - expense, positive - income)</label
         >
         <input
-          class="p-2 rounded bg-gray-200 placeholder:text-gray-500"
+          class="p-2 rounded bg-gray-200 placeholder:text-gray-500 text-gray-800"
           type="text"
           id="amount"
           v-model="amount"
